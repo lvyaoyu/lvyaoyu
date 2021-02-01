@@ -1,0 +1,75 @@
+from playwright import sync_playwright
+
+def run(playwright):
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.newContext()
+
+    # Open new page
+    page = context.newPage()
+
+    # Go to https://www.baidu.com/
+    page.goto("https://www.baidu.com/")
+
+    # Click input[name="wd"]
+    page.click("input[name=\"wd\"]")
+
+    # Fill input[name="wd"]
+    # with page.expect_navigation(url="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=4399&fenlei=256&rsv_pq=ba51d587000a1b19&rsv_t=d9c29QKkEo513eN77u75aAC3RDjdh56CTKIIaLt15nGtCd8sDxwn9WofsNY&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_sug3=5&rsv_sug1=3&rsv_sug7=100&rsv_sug2=0&rsv_btype=i&prefixsug=4%2526lt%253B99&rsp=5&inputT=2002&rsv_sug4=5153"):
+    with page.expect_navigation():
+        page.fill("input[name=\"wd\"]", "4399")
+
+    # Go to http://www.4399.com/
+    page1.goto("http://www.4399.com/")
+
+    # Open new page
+    page2 = context.newPage()
+    page2.goto('http://www.4399.com/flash/18012.htm')
+
+    # Close page
+    page2.close()
+
+    # Close page
+    page1.close()
+
+    # Fill input[name="wd"]
+    # with page.expect_navigation(url="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E6%90%BA%E7%A8%8B&fenlei=256&oq=4%2526lt%253B99&rsv_pq=bc7fe0b3000a7546&rsv_t=0dd6yhBdiQtZKV0vyvalADZ65qJzVw4NxAix8y%2BkRag7y6pYBeUkpvWeotE&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_btype=t&inputT=24819&rsv_sug3=14&rsv_sug1=10&rsv_sug7=101&rsv_sug2=0&rsv_sug4=24820"):
+    with page.expect_navigation():
+        page.fill("input[name=\"wd\"]", "携程")
+
+    # Go to https://www.ctrip.com/?sid=155952&allianceid=4897&ouid=index
+    page3.goto("https://www.ctrip.com/?sid=155952&allianceid=4897&ouid=index")
+
+    # Open new page
+    page4 = context.newPage()
+    page4.goto('https://flights.ctrip.com/international/search/domestic')
+
+    # Click input[name="owACity"]
+    page4.click("input[name=\"owACity\"]")
+
+    # Click text="亚洲"
+    page4.click("text=\"亚洲\"")
+
+    # Click input[name="owACity"]
+    page4.click("input[name=\"owACity\"]")
+
+    # Fill input[name="owACity"]
+    page4.fill("input[name=\"owACity\"]", "武汉")
+
+    # Go to https://flights.ctrip.com/itinerary/oneway/sha-wuh,wuh?date=2021-02-08&ct=1609826614456&hasChild=false&hasBaby=false&classType=ALL
+    page4.goto("https://flights.ctrip.com/itinerary/oneway/sha-wuh,wuh?date=2021-02-08&ct=1609826614456&hasChild=false&hasBaby=false&classType=ALL")
+
+    # Close page
+    page4.close()
+
+    # Close page
+    page3.close()
+
+    # Close page
+    page.close()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+with sync_playwright() as playwright:
+    run(playwright)
