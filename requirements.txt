@@ -67,7 +67,7 @@ pycparser==2.20
 PyDispatcher==2.0.5
 pyexcel==0.6.6
 pyexcel-io==0.6.4
-Pygments==2.7.2
+Pygments==2.7.4
 PyHamcrest==2.0.2
 PyMySQL==0.10.1
 pyOpenSSL==19.1.0
